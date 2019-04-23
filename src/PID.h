@@ -33,6 +33,12 @@ class PID {
 
  private:
   /**
+   * previous cte and flag 
+   */  
+  bool prev_cte_is_initialized;
+  double prev_cte;
+  
+  /**
    * PID Errors
    */
   double p_error;
