@@ -82,8 +82,8 @@ In the above two gifs, the controller with smaller P value kp = 0.01 cannot have
 |---|---|
 |![Alt Text](./gifs/0.2_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_2.0.gif)|
 
-***The effect of D component is to reduce oscillation.*** 
-In the above two gifs, the controller with larger D value kd = 2.0 has much lower oscillation compared with kd = 0.1.
+***The effect of D component is to reduce oscillations.*** 
+In the above two gifs, the controller with larger D value kd = 2.0 has much smaller oscillations compared with kd = 0.1.
 
 * **I component**
 
