@@ -1,7 +1,8 @@
 #include "PID.h"
+#include <iostream>
 
 /**
- * TODO: Complete the PID class. You may add any additional desired functions.
+ * Complete the PID class. You may add any additional desired functions.
  */
 
 PID::PID() {
@@ -22,17 +23,18 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
 
 void PID::UpdateError(double cte) {
   /**
-   * TODO: Update PID errors based on cte.
+   * Update PID errors based on cte.
    */
   p_error = cte;
   i_error += cte;  
   if (prev_cte_is_initialized == false){
-    prev_cte = cte;
     d_error = 0;
+    prev_cte = cte;
     prev_cte_is_initialized = true;
   }
   else {
     d_error = cte - prev_cte;
+    prev_cte = cte;
   }
 }
 
@@ -41,11 +43,27 @@ double PID::TotalError() {
    * Calculate and return the total error
    */
   double total_error = -Kp * p_error - Kd * d_error - Ki * i_error;
-  if (total_error > 0.1) {
-    total_error = 0.1;
+  std::cout << "Kp * p_error/" << -Kp * p_error << std::endl;
+  std::cout << "kd * d_error/" << -Kd * d_error << std::endl;
+  std::cout << "Ki * i_error/" << -Ki * i_error << std::endl;
+  if (total_error > 1) {
+    total_error = 1;
   }
-  else if (total_error < -0.1) {
-    total_error = -0.1;
+  else if (total_error < -1) {
+    total_error = -1;
   }
-  return total_error;  // TODO: Add your total error calc here!
+  return total_error; 
+}
+
+void MovingAverage::UpdateMean(double input_data){
+  if (data.size() < max_num_element) {
+    mean = (mean * data.size() + input_data)/(data.size() + 1);
+    data.push(input_data);
+  }
+  else {
+    double pop_data = data.front();
+    mean = (mean * max_num_element - pop_data + input_data)/max_num_element;  
+    data.pop();
+    data.push(input_data);
+  }
 }

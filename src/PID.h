@@ -1,5 +1,6 @@
 #ifndef PID_H
 #define PID_H
+#include <queue>
 
 class PID {
  public:
@@ -16,6 +17,7 @@ class PID {
   /**
    * Initialize PID.
    * @param (Kp_, Ki_, Kd_) The initial PID coefficients
+   * IMPORTANT: Kp_, Ki_, Kd_ must be 0 or positive to guarantee stability
    */
   void Init(double Kp_, double Ki_, double Kd_);
 
@@ -33,7 +35,7 @@ class PID {
 
  private:
   /**
-   * previous cte and flag 
+   * previous cte & flag for prev_cte initialization
    */  
   bool prev_cte_is_initialized;
   double prev_cte;
@@ -51,6 +53,17 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+};
+
+class MovingAverage {
+ public:
+  MovingAverage(int num):max_num_element(num) {}
+  void UpdateMean(double input_data);
+  
+  double mean = 0;
+ private:
+  int max_num_element;
+  std::queue<double> data;
 };
 
 #endif  // PID_H
