@@ -74,7 +74,7 @@ for instructions and the project rubric.
 |![Alt Text](./gifs/0.01_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_0.1.gif)|
 
 ***The effect of P component is to reduce the error between the response and the reference value.*** 
-In the above two gifs, the controller with smaller P value kp = 0.01 cannot have large enough steering angle to guide the vehicle back to the center line; the controller with larger P value kp = 0.2 can pull the vehicle back to the center, however have large oscillation.
+In the above two gifs, the controller with smaller P value kp = 0.01 cannot have large enough steering angle to guide the vehicle back to the center line; the controller with larger P value kp = 0.2 can pull the vehicle back to the center, however have large oscillations.
 
 * **D component**
 
