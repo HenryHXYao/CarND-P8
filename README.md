@@ -97,7 +97,7 @@ In the above two gifs, the controller with larger D value kd = 2.0 has much smal
 
 ***The effect of I value is to eliminate systematic bias.***
 
- As the systematic bias for the cte pid controller is small, adding I component to the controller doesn't have significant influence on the controller's performance, except for the starting stage where the controller with ki = 0.01 has larger oscillation than ki = 0.0.
+ As the systematic bias for the cte pid controller is small, adding I component to the controller doesn't have significant influence on the controller's performance, except for the starting stage where the controller with ki = 0.01 has larger oscillations than ki = 0.0.
 
 **Speed controller**
 
