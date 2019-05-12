@@ -66,15 +66,52 @@ for instructions and the project rubric.
 
 ## Reflection
 #### 1. Describe the effect each of the P, I, D components had in your implementation.
-* P component
 
+* **P component**
 
+|kp=0.01;ki=0.0;kd=0.1|kp=0.2;ki=0.0;kd=0.1|
+|---|---|
+|![Alt Text](./gifs/0.01_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_0.1.gif)|
 
-* I component
+***The effect of P component is to reduce the error between the response and the reference value.*** 
+In the above two gifs, the controller with smaller P value kp = 0.01 cannot have large enough steering angle to guide the vehicle back to the center line; the controller with larger P value kp = 0.2 can pull the vehicle back to the center, however have large oscillation.
 
+* **D component**
 
-* D component
+|kp=0.2;ki=0.0;kd=0.1|kp=0.2;ki=0.0;kd=2.0|
+|---|---|
+|![Alt Text](./gifs/0.2_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_2.0.gif)|
 
+***The effect of D component is to reduce oscillation.*** 
+In the above two gifs, the controller with larger D value kd = 2.0 has much lower oscillation compared with kd = 0.1.
 
+* **I component**
+
+**Cross track error controller**
+
+|kp=0.2;ki=0.0;kd=2.0|kp=0.2;ki=0.01;kd=2.0|
+|---|---|
+|![Alt Text](./gifs/0.2_0.0_2.0.gif)| ![Alt Text](./gifs/0.2_0.01_2.0.gif)|
+
+***The effect of I value is to eliminate systematic bias.***
+ As the systematic bias for the cte pid controller is small, adding I component to the controller doesn't have significant influence on the controller's performance, except for the starting stage where the controller with ki = 0.01 has larger oscillation than ki = 0.0.
+
+**Speed controller**
+
+|kp=0.2;ki=0.0;kd=5.0|kp=0.2;ki=0.002;kd=5.0|
+|---|---|
+|![Alt Text](./gifs/speed0.2_0.0_5.0.gif)| ![Alt Text](./gifs/speed0.2_0.002_5.0.gif)|
+
+However, the I component is quite effective in the speed pid controller. As the friction applied on the vehicle is a systematic bias that is not negligible, the speed controller with ki = 0.0 cannot reach the reference speed = 30.0 (left gif). Then by setting ki = 0.002, the right gif shows the controller can eliminate the systematic bias and successfully reach the reference speed.
 
 #### 2. Describe how the final hyperparameters were chosen.
+
+I chose to tune the parameters manually. I refered to this [post](https://robotics.stackexchange.com/questions/167/what-are-good-strategies-for-tuning-pid-loops) and the strategy I took is the following:
+* Step 1: Increase the P gain until the response is steady oscillation.
+* Step 2: Increase the D gain until the oscillations are reduced to the acceptable level.
+* Step 3: Repeat steps 2 and 3 until increasing the D gain does not stop the oscillations.
+* Step 4: Increase the I gain to eliminate the systematic bias.
+
+Finally, the parameters I chose are:
+* cte controller: kp = 0.2, ki = 0.001, kd = 2.0
+* speed controller: kp = 0.2, ki = 0.002, kd = 5.0

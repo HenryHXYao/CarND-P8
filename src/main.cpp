@@ -38,13 +38,12 @@ int main()
   uWS::Hub h;
 
   PID pid_steer, pid_throttle;
-  //MovingAverage moving_average_steer(1), moving_average_throttle(1);
   /**
    * Initialize the pid variable.
    */
   double speed_ref = 30.0;
-  pid_steer.Init(0.2, 0.01, 10);
-  pid_throttle.Init(0.2, 0.001, 5);
+  pid_steer.Init(0.2, 0.001, 2);
+  pid_throttle.Init(0.2, 0.002, 5);
 
   h.onMessage([&speed_ref, &pid_steer, &pid_throttle](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
                                                       uWS::OpCode opCode) {
