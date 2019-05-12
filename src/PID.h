@@ -1,9 +1,9 @@
 #ifndef PID_H
 #define PID_H
-#include <queue>
 
-class PID {
- public:
+class PID
+{
+public:
   /**
    * Constructor
    */
@@ -33,13 +33,13 @@ class PID {
    */
   double TotalError();
 
- private:
+private:
   /**
    * previous cte & flag for prev_cte initialization
-   */  
+   */
   bool prev_cte_is_initialized;
   double prev_cte;
-  
+
   /**
    * PID Errors
    */
@@ -49,21 +49,10 @@ class PID {
 
   /**
    * PID Coefficients
-   */ 
+   */
   double Kp;
   double Ki;
   double Kd;
 };
 
-class MovingAverage {
- public:
-  MovingAverage(int num):max_num_element(num) {}
-  void UpdateMean(double input_data);
-  
-  double mean = 0;
- private:
-  int max_num_element;
-  std::queue<double> data;
-};
-
-#endif  // PID_H
+#endif // PID_H
