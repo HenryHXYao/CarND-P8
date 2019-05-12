@@ -74,6 +74,7 @@ for instructions and the project rubric.
 |![Alt Text](./gifs/0.01_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_0.1.gif)|
 
 ***The effect of P component is to reduce the error between the response and the reference value.*** 
+
 In the above two gifs, the controller with smaller P value kp = 0.01 cannot have large enough steering angle to guide the vehicle back to the center line; the controller with larger P value kp = 0.2 can pull the vehicle back to the center, however have large oscillations.
 
 * **D component**
@@ -83,6 +84,7 @@ In the above two gifs, the controller with smaller P value kp = 0.01 cannot have
 |![Alt Text](./gifs/0.2_0.0_0.1.gif)| ![Alt Text](./gifs/0.2_0.0_2.0.gif)|
 
 ***The effect of D component is to reduce oscillations.*** 
+
 In the above two gifs, the controller with larger D value kd = 2.0 has much smaller oscillations compared with kd = 0.1.
 
 * **I component**
@@ -94,6 +96,7 @@ In the above two gifs, the controller with larger D value kd = 2.0 has much smal
 |![Alt Text](./gifs/0.2_0.0_2.0.gif)| ![Alt Text](./gifs/0.2_0.01_2.0.gif)|
 
 ***The effect of I value is to eliminate systematic bias.***
+
  As the systematic bias for the cte pid controller is small, adding I component to the controller doesn't have significant influence on the controller's performance, except for the starting stage where the controller with ki = 0.01 has larger oscillation than ki = 0.0.
 
 **Speed controller**
