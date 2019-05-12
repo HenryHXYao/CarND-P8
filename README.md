@@ -116,5 +116,6 @@ I chose to tune the parameters manually. I refered to this [post](https://roboti
 * Step 4: Increase the I gain to eliminate the systematic bias.
 
 Finally, the parameters I chose are:
+* reference speed = 30 mph
 * cte controller: kp = 0.2, ki = 0.001, kd = 2.0
 * speed controller: kp = 0.2, ki = 0.002, kd = 5.0
